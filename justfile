@@ -18,3 +18,6 @@ extract:
 clean:
   git submodule deinit -f .
   git submodule update --init --recursive --checkout
+
+flash:
+  wally-cli ./out/moonlander.bin

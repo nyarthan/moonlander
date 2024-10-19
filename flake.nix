@@ -46,6 +46,8 @@
           devShells.default = pkgs.mkShell {
             packages = [
               pkgs.just
+              pkgs.podman
+              pkgs.wally-cli
             ];
           };
 
