@@ -5,6 +5,8 @@ default:
 
 copy:
   cp ./keymap.c ./qmk_firmware/keyboards/zsa/moonlander/keymaps/default/keymap.c
+  cp ./config.h ./qmk_firmware/keyboards/zsa/moonlander/keymaps/default/config.h
+  cp ./rules.mk ./qmk_firmware/keyboards/zsa/moonlander/keymaps/default/rules.mk
 
 build: copy
   pushd qmk_firmware && ./util/docker_build.sh zsa/moonlander && popd
