@@ -8,7 +8,18 @@ enum layers {
     BASE,
     SYMB,
     MDIA,
+    MODS,
 };
+
+// Momentary Mods
+#define OS_LGUI OSM(MOD_LGUI) // Momentary Left GUI
+#define OS_LCTL OSM(MOD_LCTL) // Momentary Left CTRL
+#define OS_LSFT OSM(MOD_LSFT) // Momentary Left Shift
+#define OS_LALT OSM(MOD_LALT) // Momentary Left Alt
+#define OS_RGUI OSM(MOD_RGUI) // Momentary Right GUI
+#define OS_RCTL OSM(MOD_RCTL) // Momentary Right CTRL
+#define OS_RSFT OSM(MOD_RSFT) // Momentary Right Shift
+#define OS_RALT OSM(MOD_RALT) // Momentary Right Alt
 
 // Software mappings
 // these may be different depending on the target so a software mapping seems more robust
@@ -56,14 +67,11 @@ enum layers {
 #define TO_BASE TO(BASE) // Toggle Base Layer
 #define TO_SYMB TO(SYMB) // Toggle Symbols Layer
 #define TO_MDIA TO(MDIA) // Toggle Media Layer
+#define TO_MODS TO(MODS) // Toggle Mods Layer
 
 enum custom_keycodes {
-    VRSN = SAFE_RANGE,
+    OSL_MOD = SAFE_RANGE,
     RGB_SLD = ML_SAFE_RANGE,
-    ST_MACRO_0,
-    ST_MACRO_1,
-    ST_MACRO_2,
-    ST_MACRO_3,
 };
 
 // clang-format off
@@ -71,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT(
     // ┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┓         ┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┓
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
-         XXXXXXX , KC_1    , KC_2    , KC_3    , KC_4    , KC_5    , XXXXXXX ,           XXXXXXX , KC_6    , KC_7    , KC_8    , KC_9    , KC_0    , XXXXXXX ,
+         OSL_MOD , KC_1    , KC_2    , KC_3    , KC_4    , KC_5    , XXXXXXX ,           XXXXXXX , KC_6    , KC_7    , KC_8    , KC_9    , KC_0    , XXXXXXX ,
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
     // ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫         ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
@@ -79,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
     // ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫         ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
-         KC_DEL  , HM_A    , HM_S    , HM_D    , HM_F    , KC_G    , TO_SYMB ,           TO_MDIA , KC_H    , HM_J    , HM_K    , HM_L    , HM_SCLN , KC_BSPC ,
+         KC_DEL  , KC_A    , KC_S    , KC_D    , KC_F    , KC_G    , TO_SYMB ,           TO_MDIA , KC_H    , KC_J    , KC_K    , KC_L    , KC_SCLN , KC_BSPC ,
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
     // ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┛         ┗━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃                             ┃         ┃         ┃         ┃         ┃         ┃         ┃
@@ -102,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
     // ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫         ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
-         XXXXXXX , KC_GRV  , CC_TILD , SM_EURO , XXXXXXX , XXXXXXX , XXXXXXX ,           XXXXXXX , CC_PIPE  , KC_MINS, CC_PLUS , CC_LBRS , CC_RBRS , XXXXXXX ,
+         XXXXXXX , KC_GRV  , CC_TILD , SM_EURO , XXXXXXX , XXXXXXX , XXXXXXX ,           XXXXXXX , CC_PIPE , KC_MINS , CC_PLUS , CC_LBRS , CC_RBRS , XXXXXXX ,
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
     // ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫         ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
@@ -133,7 +141,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
     // ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫         ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
-         XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , TO_BASE ,           TO_SYMB , XXXXXXX , KC_MPRV , KC_MPLY , KC_MNXT , XXXXXXX , XXXXXXX ,
+         XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , TO_MODS ,           TO_SYMB , XXXXXXX , KC_MPRV , KC_MPLY , KC_MNXT , XXXXXXX , XXXXXXX ,
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
     // ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┛         ┗━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃                             ┃         ┃         ┃         ┃         ┃         ┃         ┃
@@ -149,6 +157,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //                                         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
     //                                         ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛         ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛
 
+    [MODS] = LAYOUT(
+    // ┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┓         ┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┓
+    // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
+         XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,           XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+    // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
+    // ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫         ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
+    // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
+         XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,           XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+    // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
+    // ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫         ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
+    // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
+         XXXXXXX , OS_RGUI , OS_LALT , OS_LSFT , OS_LCTL , XXXXXXX , TO_BASE ,           TO_MDIA , XXXXXXX , OS_RCTL , OS_RSFT , OS_LALT , OS_RGUI , XXXXXXX ,
+    // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
+    // ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┛         ┗━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
+    // ┃         ┃         ┃         ┃         ┃         ┃         ┃                             ┃         ┃         ┃         ┃         ┃         ┃         ┃
+         XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,                               XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+    // ┃         ┃         ┃         ┃         ┃         ┃         ┃                             ┃         ┃         ┃         ┃         ┃         ┃         ┃
+    // ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┓         ┏━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
+    // ┃         ┃         ┃         ┃         ┃         ┃ /*****/ ┃         ┃         ┃         ┃ /*****/ ┃         ┃         ┃         ┃         ┃         ┃
+         XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , /*****/   XXXXXXX ,           XXXXXXX , /*****/   XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+    // ┃         ┃         ┃         ┃         ┃         ┃ /*****/ ┃         ┃         ┃         ┃ /*****/ ┃         ┃         ┃         ┃         ┃         ┃
+    // ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫         ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛
+    //                                         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
+                                                 XXXXXXX , XXXXXXX , XXXXXXX ,           XXXXXXX , XXXXXXX , XXXXXXX ),
+    //                                         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
+    //                                         ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛         ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛
 };
 
 
@@ -163,12 +197,16 @@ const uint16_t PROGMEM combo0[] = { KC_F1, KC_F10, COMBO_END };
 const uint16_t PROGMEM combo1[] = { KC_F2, KC_F10, COMBO_END };
 const uint16_t PROGMEM combo2[] = { HM_J, HM_K, COMBO_END };
 const uint16_t PROGMEM combo3[] = { HM_F, HM_D, COMBO_END };
+const uint16_t PROGMEM combo4[] = { KC_K, KC_L, COMBO_END };
+const uint16_t PROGMEM combo5[] = { KC_S, KC_D, COMBO_END };
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, KC_F11),
     COMBO(combo1, KC_F12),
     COMBO(combo2, KC_ESC),
     COMBO(combo3, KC_ESC),
+    COMBO(combo4, OSL_MOD),
+    COMBO(combo5, OSL_MOD),
 };
 
 // TODO: custom rgb matrix
@@ -186,32 +224,33 @@ void keyboard_post_init_user(void) {
 #define YELLOW	{255,255,0}
 #define CYAN	{0,255,255}
 #define PINK	{255,0,255}
+#define DRKVLT	{148,0,211}
 
 const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
     [BASE] = {
     // ┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┓         ┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┓
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
-         RED     , GREEN   , BLUE    , YELLOW  , CYAN    , PINK    , RED     ,           WHITE   , WHITE   , BLACK   , BLACK   , WHITE   , WHITE   , BLACK   ,
+         BLACK   , BLUE    , BLUE    , BLUE    , BLUE    , BLUE    , BLACK   ,           BLACK   , BLUE    , BLUE    , BLUE    , BLUE    , BLUE    , BLACK   ,
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
     // ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫         ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
-         BLUE    , YELLOW  , CYAN    , PINK    , RED     , GREEN   , BLUE    ,           BLACK   , BLACK   , WHITE   , WHITE   , BLACK   , WHITE   , WHITE   ,
+         RED     , WHITE   , WHITE   , WHITE   , WHITE   , WHITE   , BLACK   ,           BLACK   , WHITE   , WHITE   , WHITE   , WHITE   , WHITE   , BLACK   ,
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
     // ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫         ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
-         CYAN    , PINK    , RED     , GREEN   , BLUE    , YELLOW  , CYAN    ,           WHITE   , WHITE   , BLACK   , BLACK   , WHITE   , WHITE   , BLACK   ,
+         RED     , WHITE   , WHITE   , WHITE   , WHITE   , WHITE   , GREEN   ,           GREEN   , WHITE   , WHITE   , WHITE   , WHITE   , WHITE   , RED     ,
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
     // ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┛         ┗━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃                             ┃         ┃         ┃         ┃         ┃         ┃         ┃
-         RED     , GREEN   , BLUE    , YELLOW  , CYAN    , PINK    ,                               BLACK   , WHITE   , WHITE   , BLACK   , BLACK   , WHITE   ,
+         BLACK   , WHITE   , WHITE   , WHITE   , WHITE   , WHITE   ,                               WHITE   , WHITE   , WHITE   , WHITE   , WHITE   , BLACK   ,
     // ┃         ┃         ┃         ┃         ┃         ┃         ┃                             ┃         ┃         ┃         ┃         ┃         ┃         ┃
     // ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┓         ┏━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
     // ┃         ┃         ┃         ┃         ┃         ┃ /*****/ ┃         ┃         ┃         ┃ /*****/ ┃         ┃         ┃         ┃         ┃         ┃
-         WHITE   , WHITE   , WHITE   , WHITE   , WHITE   , /*****/   WHITE   ,           BLACK   , /*****/   BLACK   , BLACK   , WHITE   , WHITE   , BLACK   ,
+         BLACK   , BLACK   , BLACK   , BLACK   , BLACK   , /*****/   DRKVLT  ,           DRKVLT  , /*****/   BLACK   , BLACK   , BLACK   , BLACK   , BLACK   ,
     // ┃         ┃         ┃         ┃         ┃         ┃ /*****/ ┃         ┃         ┃         ┃ /*****/ ┃         ┃         ┃         ┃         ┃         ┃
     // ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫         ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛
     //                                         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
-                                                 WHITE   , WHITE   , WHITE   ,           WHITE   , BLACK   , WHITE   },
+                                                 RED     , GREEN   , BLACK   ,           BLACK   , GREEN   , RED     },
     //                                         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
     //                                         ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛         ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛
 
@@ -266,6 +305,33 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
     // ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫         ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛
     //                                         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
                                                  WHITE   , WHITE   , WHITE   ,           WHITE   , BLACK   , WHITE   },
+    //                                         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
+    //                                         ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛         ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛
+
+    [MODS] = {
+    // ┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┓         ┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┓
+    // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
+         BLACK   , BLACK   , BLACK   , BLACK   , BLACK   , BLACK   , BLACK   ,           BLACK   , BLACK   , BLACK   , BLACK   , BLACK   , BLACK   , BLACK   ,
+    // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
+    // ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫         ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
+    // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
+         BLACK   , BLACK   , BLACK   , BLACK   , BLACK   , BLACK   , BLACK   ,           BLACK   , BLACK   , BLACK   , BLACK   , BLACK   , BLACK   , BLACK   ,
+    // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
+    // ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫         ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
+    // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
+         BLACK   , YELLOW  , YELLOW  , YELLOW  , YELLOW  , BLACK   , GREEN   ,           GREEN   , BLACK   , YELLOW  , YELLOW  , YELLOW  , YELLOW  , BLACK   ,
+    // ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
+    // ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┛         ┗━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
+    // ┃         ┃         ┃         ┃         ┃         ┃         ┃                             ┃         ┃         ┃         ┃         ┃         ┃         ┃
+         BLACK   , BLACK   , BLACK   , BLACK   , BLACK   , BLACK   ,                               BLACK   , BLACK   , BLACK   , BLACK   , BLACK   , BLACK   ,
+    // ┃         ┃         ┃         ┃         ┃         ┃         ┃                             ┃         ┃         ┃         ┃         ┃         ┃         ┃
+    // ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┓         ┏━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
+    // ┃         ┃         ┃         ┃         ┃         ┃ /*****/ ┃         ┃         ┃         ┃ /*****/ ┃         ┃         ┃         ┃         ┃         ┃
+         BLACK   , BLACK   , BLACK   , BLACK   , BLACK   , /*****/   BLACK   ,           BLACK   , /*****/   BLACK   , BLACK   , BLACK   , BLACK   , BLACK   ,
+    // ┃         ┃         ┃         ┃         ┃         ┃ /*****/ ┃         ┃         ┃         ┃ /*****/ ┃         ┃         ┃         ┃         ┃         ┃
+    // ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫         ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛
+    //                                         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
+                                                 BLACK   , BLACK   , BLACK   ,           BLACK   , BLACK   , BLACK   },  
     //                                         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
     //                                         ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛         ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛
 };
@@ -327,6 +393,8 @@ void set_layer_color(int layer) {
   }
 }
 
+static bool is_mod_oneshot_layer_active = false;
+
 bool rgb_matrix_indicators_user(void) {
   // TODO: rawhid is undeclared - also I have no idea what the fuck this is doing
   /* if (rawhid_state.rgb_control) { */
@@ -356,9 +424,6 @@ bool rgb_matrix_indicators_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (keycode == RGB_SLD) {
-        /* if (rawhid_state.rgb_control) { */
-        /*     return false; */
-        /* } */
         if (record->event.pressed) {
             rgblight_mode(1);
         }
@@ -367,21 +432,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     if (record->event.pressed) {
         switch (keycode) {
-        case VRSN:
-            SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-            return false;
-        /* case ST_MACRO_0: */
-        /*     SEND_STRING(SS_LALT(SS_TAP(X_2) )); */
-        /*     return true; */
-        /* case ST_MACRO_1: */
-        /*     SEND_STRING(SS_LALT(SS_TAP(X_U)) SS_DELAY(100) SS_TAP(X_A)); */
-        /*     return true; */
-        /* case ST_MACRO_2: */
-        /*     SEND_STRING(SS_LALT(SS_TAP(X_U)) SS_DELAY(100) SS_TAP(X_O)); */
-        /*     return true; */
-        /* case ST_MACRO_3: */
-        /*     SEND_STRING(SS_LALT(SS_TAP(X_U)) SS_DELAY(100) SS_TAP(X_U)); */
-        /*     return true; */
+            case OSL_MOD:
+                // is_mod_oneshot_layer_active = true;
+                layer_on(MODS);
+		return true;
+            
+            case OSM(MOD_LSFT):
+            case OSM(MOD_LCTL):
+            case OSM(MOD_LALT):
+            case OSM(MOD_LGUI):
+            case OSM(MOD_RSFT):
+            case OSM(MOD_RCTL):
+            case OSM(MOD_RALT):
+            case OSM(MOD_RGUI):
+                if (record->event.pressed && is_mod_oneshot_layer_active) {
+                    is_mod_oneshot_layer_active = false;
+                    layer_off(MODS);
+                }
+                return true;
         }
     }
     return true;
